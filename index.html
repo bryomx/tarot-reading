@@ -10,13 +10,6 @@
       display: flex;
     }
 
-    /* Styles for card images */
-    .card {
-      width: 150px; /* Adjust the width as needed */
-      height: 225px; /* Adjust the height as needed */
-      margin: 5px; /* Adjust the margin as needed */
-    }
-
     /* Add your other styling here */
   </style>
 </head>
@@ -38,8 +31,9 @@
         const cardImage = document.createElement('img');
         cardImage.src = imageUrl;
 
-        // Set styling for card images
-        cardImage.classList.add('card');
+        // Set consistent width and height for card images
+        cardImage.style.width = '150px'; // Adjust the width as needed
+        cardImage.style.height = '225px'; // Adjust the height as needed
 
         if (isReversed) {
           cardImage.style.transform = 'rotate(180deg)';
