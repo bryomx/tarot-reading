@@ -5,11 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tarot Card Reading</title>
   <style>
-    /* Styles for reversed cards */
-    .reversed {
-      transform: rotate(180deg);
-    }
-
     /* Add your other styling here */
   </style>
 </head>
@@ -30,9 +25,11 @@
         const isReversed = Math.random() < 0.5; // 50% chance of being reversed
         const cardImage = document.createElement('img');
         cardImage.src = imageUrl;
+
         if (isReversed) {
-          cardImage.classList.add('reversed');
+          cardImage.style.transform = 'rotate(180deg)';
         }
+
         cardContainer.appendChild(cardImage);
       }
     }
