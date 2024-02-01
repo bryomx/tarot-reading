@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarot Card Reading</title>
+  <style>
+    /* Add your styling here */
+  </style>
+</head>
+<body>
+  <button onclick="revealCards(3)">Reveal 3 Cards</button>
+  <button onclick="revealCards(2)">Reveal 2 Cards</button>
+  <button onclick="restartReading()">Restart Reading</button>
+
+  <div id="cardContainer"></div>
+
+  <script>
+    function revealCards(numCards) {
+      const cardContainer = document.getElementById('cardContainer');
+      cardContainer.innerHTML = ''; // Clear previous cards
+
+      for (let i = 0; i < numCards; i++) {
+        const imageUrl = getRandomImageUrl();
+        const cardImage = document.createElement('img');
+        cardImage.src = imageUrl;
+        cardContainer.appendChild(cardImage);
+      }
+    }
+
+    function getRandomImageUrl() {
+      const folderUrl = 'https://raw.githubusercontent.com/bryomx/tarot-reading/main/images/';
+      const randomIndex = Math.floor(Math.random() * 122) + 1; // Assuming you have 122 images named card0.jpg, card1.jpg, ..., card121.jpg
+      return `${folderUrl}${randomIndex}.jpg`;
+    }
+
+    function restartReading() {
+      const cardContainer = document.getElementById('cardContainer');
+      cardContainer.innerHTML = ''; // Clear all cards
+    }
+  </script>
+</body>
+</html>
