@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tarot Card Reading</title>
   <style>
+    /* Styles for card container */
+    #cardContainer {
+      display: flex;
+    }
+
+    /* Styles for card images */
+    .card {
+      width: 150px; /* Adjust the width as needed */
+      height: 225px; /* Adjust the height as needed */
+      margin: 5px; /* Adjust the margin as needed */
+    }
+
     /* Add your other styling here */
   </style>
 </head>
@@ -26,6 +38,9 @@
         const cardImage = document.createElement('img');
         cardImage.src = imageUrl;
 
+        // Set styling for card images
+        cardImage.classList.add('card');
+
         if (isReversed) {
           cardImage.style.transform = 'rotate(180deg)';
         }
@@ -36,7 +51,7 @@
 
     function getRandomImageUrl() {
       const folderUrl = 'https://raw.githubusercontent.com/bryomx/tarot-reading/main/';
-      const randomIndex = Math.floor(Math.random() * 122) + 1; // Assuming you have 121 images named card0.jpg, card1.jpg, ..., card121.jpg
+      const randomIndex = Math.floor(Math.random() * 122) + 1; // Assuming you have 122 images named card0.jpg, card1.jpg, ..., card121.jpg
       return `${folderUrl}${randomIndex}.jpg`;
     }
 
