@@ -8,6 +8,16 @@
     /* Styles for card container */
     #cardContainer {
       display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; /* Adjust the height of the container as needed */
+    }
+
+    /* Styles for card images */
+    .card {
+      max-width: 150px; /* Maximum width for each card */
+      max-height: 225px; /* Maximum height for each card */
+      margin: 5px; /* Adjust the margin as needed */
     }
 
     /* Add your other styling here */
@@ -31,9 +41,8 @@
         const cardImage = document.createElement('img');
         cardImage.src = imageUrl;
 
-        // Set consistent width and height for card images
-        cardImage.style.width = '150px'; // Adjust the width as needed
-        cardImage.style.height = '225px'; // Adjust the height as needed
+        // Set styling for card images
+        cardImage.classList.add('card');
 
         if (isReversed) {
           cardImage.style.transform = 'rotate(180deg)';
