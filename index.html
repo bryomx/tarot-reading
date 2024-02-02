@@ -54,8 +54,6 @@
       border: 2px solid #fff; /* White border around the cards */
       border-radius: 10px; /* Rounded corners */
       overflow: hidden;
-      transform-style: preserve-3d; /* Preserve 3D transformations */
-      cursor: pointer;
     }
 
     /* Styles for card images (front and back) */
@@ -68,7 +66,6 @@
       top: 0;
       left: 0;
       backface-visibility: hidden; /* Hide backface during animation to prevent flickering */
-      transition: transform 0.6s; /* Add smooth transition for the transform property */
     }
 
     /* Styles for buttons */
@@ -83,7 +80,7 @@
       margin: 10px; /* Adjust margin between buttons */
       padding: 10px;
       font-family: 'Pacifico', cursive; /* Stylish handwriting font */
-      font-size: 16px;
+      font-size: 14px;
       background-color: #fff; /* White background for buttons */
       color: #333; /* Dark text color for buttons */
       border: none;
@@ -133,17 +130,22 @@
         card.classList.add('card');
 
         const frontImage = document.createElement('img');
-        frontImage.src = imageUrl;
+        frontImage.src = 'https://i.pinimg.com/736x/c9/e5/61/c9e561d61fc50771ece1255125f7fb1a.jpg'; // Replace with your back image URL
         frontImage.alt = 'Front';
         frontImage.classList.add('front');
 
         const backImage = document.createElement('img');
-        backImage.src = 'https://i.pinimg.com/736x/c9/e5/61/c9e561d61fc50771ece1255125f7fb1a.jpg'; // Replace with your back image URL
+        backImage.src = imageUrl;
         backImage.alt = 'Back';
         backImage.classList.add('back');
 
         card.appendChild(frontImage);
         card.appendChild(backImage);
+
+        // Apply the transformation if reversed
+        if (isReversed) {
+          card.style.transform = 'rotate(180deg)';
+        }
 
         cardContainer.appendChild(card);
       }
