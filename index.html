@@ -89,14 +89,8 @@
       cardContainer.innerHTML = ''; // Clear previous cards
 
       for (let i = 0; i < numCards; i++) {
-        let imageUrl;
-
-        // Ensure not drawing the same card again
-        do {
-          imageUrl = getRandomImageUrl();
-        } while (drawnCards.has(imageUrl));
-
-        drawnCards.add(imageUrl); // Add the drawn card to the set
+        const imageUrl = getRandomImageUrl();
+        const isReversed = Math.random() < 0.5; // 50% chance of being reversed
 
         const card = document.createElement('div');
         card.classList.add('card');
@@ -114,8 +108,8 @@
         card.appendChild(frontImage);
         card.appendChild(backImage);
 
-        // Randomly decide whether to reverse or flip the card
-        if (Math.random() < 0.5) {
+        // Apply the transformation if reversed
+        if (isReversed) {
           card.style.transform = 'rotateY(180deg)';
         }
 
