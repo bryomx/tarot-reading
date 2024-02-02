@@ -119,11 +119,6 @@
         card.appendChild(frontImage);
         card.appendChild(backImage);
 
-        // Randomly decide whether to reverse or flip the card
-        if (Math.random() < 0.5) {
-          card.classList.add('flipped');
-        }
-
         card.addEventListener('click', function () {
           this.classList.toggle('flipped');
         });
