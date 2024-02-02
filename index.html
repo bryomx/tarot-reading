@@ -54,9 +54,17 @@
       border: 2px solid #fff; /* White border around the cards */
       border-radius: 10px; /* Rounded corners */
       perspective: 1000px; /* Perspective for 3D effect */
+      cursor: pointer;
     }
 
     /* Styles for card images (front and back) */
+    .card .inner {
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.5s;
+    }
+
     .card .front,
     .card .back {
       width: 100%;
@@ -66,11 +74,10 @@
       top: 0;
       left: 0;
       backface-visibility: hidden; /* Hide backface during animation to prevent flickering */
-      transition: transform 0.6s; /* Add transition for smooth flipping */
+      border-radius: 10px; /* Rounded corners for front and back */
     }
 
-    /* Style for flipping animation */
-    .flipped {
+    .card .back {
       transform: rotateY(180deg);
     }
 
@@ -135,29 +142,28 @@
         const card = document.createElement('div');
         card.classList.add('card');
 
-        const backImage = document.createElement('img');
-        backImage.src = 'https://i.pinimg.com/736x/c9/e5/61/c9e561d61fc50771ece1255125f7fb1a.jpg'; // Replace with your back image URL
-        backImage.alt = 'Back';
-        backImage.classList.add('back');
+        const inner = document.createElement('div');
+        inner.classList.add('inner');
 
         const frontImage = document.createElement('img');
-        frontImage.src = imageUrl;
+        frontImage.src = 'https://i.pinimg.com/736x/c9/e5/61/c9e561d61fc50771ece1255125f7fb1a.jpg'; // Replace with your back image URL
         frontImage.alt = 'Front';
         frontImage.classList.add('front');
 
-        card.appendChild(backImage);
-        card.appendChild(frontImage);
+        const backImage = document.createElement('img');
+        backImage.src = imageUrl;
+        backImage.alt = 'Back';
+        backImage.classList.add('back');
+
+        inner.appendChild(frontImage);
+        inner.appendChild(backImage);
 
         // Apply the transformation if reversed
         if (isReversed) {
           card.classList.add('flipped');
         }
 
-        // Add click event listener to flip the card
-        card.addEventListener('click', () => {
-          card.classList.toggle('flipped');
-        });
-
+        card.appendChild(inner);
         cardContainer.appendChild(card);
       }
     }
