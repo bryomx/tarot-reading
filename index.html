@@ -54,7 +54,9 @@
       border: 2px solid #fff; /* White border around the cards */
       border-radius: 10px; /* Rounded corners */
       overflow: hidden;
-      transition: transform 0.5s ease; /* Add transition for a smooth flip effect */
+      cursor: pointer;
+      transform-style: preserve-3d; /* Preserve 3D transformations */
+      transition: transform 0.5s; /* Add a smooth transition effect */
     }
 
     /* Styles for card images (front and back) */
@@ -67,6 +69,10 @@
       top: 0;
       left: 0;
       backface-visibility: hidden; /* Hide backface during animation to prevent flickering */
+    }
+
+    .card .back {
+      transform: rotateY(180deg); /* Initially hide the back face */
     }
 
     /* Styles for buttons */
@@ -129,6 +135,7 @@
 
         const card = document.createElement('div');
         card.classList.add('card');
+        card.addEventListener('click', () => flipCard(card));
 
         const frontImage = document.createElement('img');
         frontImage.src = 'https://i.pinimg.com/736x/c9/e5/61/c9e561d61fc50771ece1255125f7fb1a.jpg'; // Replace with your back image URL
@@ -145,17 +152,15 @@
 
         // Apply the transformation if reversed
         if (isReversed) {
-          card.style.transform = 'rotate(180deg)';
+          card.style.transform = 'rotateY(180deg)';
         }
 
         cardContainer.appendChild(card);
-
-        // Trigger reflow to apply the rotation transition
-        void card.offsetWidth;
-
-        // Remove the rotation after the transition completes
-        card.style.transform = 'rotate(0)';
       }
+    }
+
+    function flipCard(card) {
+      card.style.transform = 'rotateY(180deg)';
     }
 
     function getRandomImageUrl() {
