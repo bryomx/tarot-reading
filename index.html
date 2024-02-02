@@ -133,12 +133,12 @@
         card.classList.add('card');
 
         const frontImage = document.createElement('img');
-        frontImage.src = imageUrl;
+        frontImage.src = 'https://i.pinimg.com/736x/c9/e5/61/c9e561d61fc50771ece1255125f7fb1a.jpg'; // Replace with your back image URL
         frontImage.alt = 'Front';
         frontImage.classList.add('front');
 
         const backImage = document.createElement('img');
-        backImage.src = 'https://i.pinimg.com/736x/c9/e5/61/c9e561d61fc50771ece1255125f7fb1a.jpg'; // Replace with your back image URL
+        backImage.src = imageUrl;
         backImage.alt = 'Back';
         backImage.classList.add('back');
 
@@ -151,7 +151,7 @@
         }
 
         card.addEventListener('click', () => {
-          card.style.transform = card.style.transform === 'rotateY(180deg)' ? 'rotateY(0deg)' : 'rotateY(180deg)';
+          card.style.transform = 'rotateY(180deg)';
         });
 
         cardContainer.appendChild(card);
