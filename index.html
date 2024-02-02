@@ -54,7 +54,6 @@
       border: 2px solid #fff; /* White border around the cards */
       border-radius: 10px; /* Rounded corners */
       overflow: hidden;
-      cursor: pointer; /* Add cursor pointer for better user interaction */
     }
 
     /* Styles for card images (front and back) */
@@ -67,7 +66,6 @@
       top: 0;
       left: 0;
       backface-visibility: hidden; /* Hide backface during animation to prevent flickering */
-      transition: transform 0.5s ease; /* Add smooth transition effect */
     }
 
     /* Styles for buttons */
@@ -148,10 +146,6 @@
         if (isReversed) {
           card.style.transform = 'rotate(180deg)';
         }
-
-        card.addEventListener('click', () => {
-          card.classList.toggle('flipped');
-        });
 
         cardContainer.appendChild(card);
       }
