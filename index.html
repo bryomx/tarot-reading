@@ -30,23 +30,6 @@
       position: relative; /* To position the image relative to the title */
     }
 
-    /* Styles for the glitter lines image */
-    #glitterImage {
-      position: absolute;
-      top: calc(50% + 100px); /* Adjust the top value as needed to position it below the title */
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      height: auto;
-      z-index: -1; /* Move the image below the title */
-    }
-
-    /* Styles for the glitterlines image itself */
-    #glitterImage img {
-      width: 300px; /* Set the desired constant width */
-      height: 150px; /* Set the desired constant height */
-    }
-
     /* Styles for GIF */
     #gifContainer {
       display: flex;
@@ -70,7 +53,7 @@
       margin: 0 auto;
     }
 
-    /* Styles for card images */
+    /* Styles for card images with transition */
     .card {
       position: relative;
       width: 150px;
@@ -79,6 +62,7 @@
       border: 2px solid #fff;
       border-radius: 10px;
       overflow: hidden;
+      transition: transform 0.5s ease-in-out;
     }
 
     .card .front,
@@ -116,11 +100,6 @@
 <body>
   <h1>Cartas de Charota</h1>
 
-  <!-- Glitter Lines Image -->
-  <div id="glitterImage">
-    <img src="https://www.picgifs.com/divider/lines/glitter/lines-glitter-369402.gif" alt="Glitter Lines">
-  </div>
-
   <!-- GIF Container -->
   <div id="gifContainer">
     <img id="charotaGif" src="https://i.pinimg.com/originals/96/28/ab/9628ab80f52f9b302dbdba426aab8f41.gif" alt="Charota GIF">
@@ -139,7 +118,7 @@
   <script>
     const drawnCards = new Set();
 
-    function revealCards(numCards) {
+    async function revealCards(numCards) {
       const cardContainer = document.getElementById('cardContainer');
       cardContainer.innerHTML = '';
 
@@ -175,6 +154,9 @@
         }
 
         cardContainer.appendChild(card);
+
+        // Pause for a short duration before revealing the next card
+        await new Promise(resolve => setTimeout(resolve, 500));
       }
     }
 
