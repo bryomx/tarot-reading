@@ -32,17 +32,22 @@
 
     /* Styles for the glitter lines image */
     #glitterImage {
-      position: absolute;
-      top: 20px; /* Overlap 20% of the title */
-      width: 100%;
-      height: auto;
-      z-index: -1; /* Move the image below the title */
+      text-align: center; /* Center horizontally */
+      position: relative;
+      margin-top: 20px; /* Overlap 20% of the title */
     }
 
-    /* Styles for GIF */
+    #glitterImage img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Styles for GIF Container */
     #gifContainer {
       display: flex;
       justify-content: center;
+      align-items: center; /* Center vertically */
+      height: 30vh; /* Adjust the height of the container */
     }
 
     #charotaGif {
@@ -118,15 +123,15 @@
     <img id="charotaGif" src="https://i.pinimg.com/originals/96/28/ab/9628ab80f52f9b302dbdba426aab8f41.gif" alt="Charota GIF">
   </div>
 
+  <!-- Card Container -->
+  <div id="cardContainer"></div>
+
   <!-- Button Container -->
   <div id="buttonContainer">
     <button onclick="revealCards(3)">Draw 3 Cards</button>
     <button onclick="revealCards(2)">Draw 2 Cards</button>
     <button onclick="restartReading()">Restart Reading</button>
   </div>
-
-  <!-- Card Container -->
-  <div id="cardContainer"></div>
 
   <script>
     const drawnCards = new Set();
