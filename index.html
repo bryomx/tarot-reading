@@ -28,30 +28,21 @@
       color: #fff;
       font-family: 'Deutsch Gothic', cursive;
       position: relative; /* To position the image relative to the title */
-      z-index: 1; /* Ensure the title appears above the glitter lines image */
     }
 
     /* Styles for the glitter lines image */
     #glitterImage {
-      text-align: center; /* Center horizontally */
-      position: relative;
-      top: -20px; /* Overlap 20% of the title */
-      z-index: 0; /* Move the image below the title */
-    }
-
-    #glitterImage img {
-      max-width: 100%;
+      position: absolute;
+      top: 20px; /* Overlap 20% of the title */
+      width: 100%;
       height: auto;
+      z-index: -1; /* Move the image below the title */
     }
 
     /* Styles for GIF */
     #gifContainer {
       display: flex;
       justify-content: center;
-      align-items: center; /* Center vertically */
-      height: 30vh; /* Adjust the height of the container */
-      position: relative; /* To allow positioning above the glitter lines */
-      z-index: 2; /* Ensure the GIF appears above the glitter lines image */
     }
 
     #charotaGif {
@@ -115,20 +106,17 @@
   </style>
 </head>
 <body>
+  <h1>Cartas de Charota</h1>
+
   <!-- Glitter Lines Image -->
   <div id="glitterImage">
     <img src="https://www.picgifs.com/divider/lines/glitter/lines-glitter-369402.gif" alt="Glitter Lines">
   </div>
 
-  <h1>Cartas de Charota</h1>
-
   <!-- GIF Container -->
   <div id="gifContainer">
     <img id="charotaGif" src="https://i.pinimg.com/originals/96/28/ab/9628ab80f52f9b302dbdba426aab8f41.gif" alt="Charota GIF">
   </div>
-
-  <!-- Card Container -->
-  <div id="cardContainer"></div>
 
   <!-- Button Container -->
   <div id="buttonContainer">
@@ -136,6 +124,9 @@
     <button onclick="revealCards(2)">Draw 2 Cards</button>
     <button onclick="restartReading()">Restart Reading</button>
   </div>
+
+  <!-- Card Container -->
+  <div id="cardContainer"></div>
 
   <script>
     const drawnCards = new Set();
