@@ -24,6 +24,17 @@
       color: #fff;
     }
 
+    /* Styles for GIF */
+    #gifContainer {
+      display: flex;
+      justify-content: center;
+    }
+
+    #charotaGif {
+      max-width: 200px; /* Set your desired fixed size */
+      max-height: 200px;
+    }
+
     /* Styles for card container */
     #cardContainer {
       display: flex;
@@ -41,8 +52,6 @@
       border: 2px solid #fff; /* White border around the cards */
       border-radius: 10px; /* Rounded corners */
       overflow: hidden;
-      transition: transform 0.5s; /* Add flip animation */
-      transform-style: preserve-3d;
     }
 
     /* Styles for card images (front and back) */
@@ -75,6 +84,11 @@
 <body>
   <h1>Cartas de Charota</h1>
 
+  <!-- GIF Container -->
+  <div id="gifContainer">
+    <img id="charotaGif" src="https://i.pinimg.com/originals/96/28/ab/9628ab80f52f9b302dbdba426aab8f41.gif" alt="Charota GIF">
+  </div>
+
   <button onclick="revealCards(3)">Draw 3 Cards</button>
   <button onclick="revealCards(2)">Draw 2 Cards</button>
   <button onclick="restartReading()">Restart Reading</button>
@@ -90,6 +104,7 @@
 
       for (let i = 0; i < numCards; i++) {
         const imageUrl = getRandomImageUrl();
+        const isReversed = Math.random() < 0.5; // 50% chance of being reversed
 
         const card = document.createElement('div');
         card.classList.add('card');
@@ -107,14 +122,10 @@
         card.appendChild(frontImage);
         card.appendChild(backImage);
 
-        // Apply the transformation if randomly upside down
-        if (Math.random() < 0.5) {
+        // Apply the transformation if reversed
+        if (isReversed) {
           card.style.transform = 'rotate(180deg)';
         }
-
-        card.addEventListener('click', function () {
-          this.style.transform = this.style.transform === 'rotate(180deg)' ? 'rotate(0deg)' : 'rotate(180deg)';
-        });
 
         cardContainer.appendChild(card);
       }
