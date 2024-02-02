@@ -54,8 +54,6 @@
       border: 2px solid #fff; /* White border around the cards */
       border-radius: 10px; /* Rounded corners */
       overflow: hidden;
-      transform-style: preserve-3d; /* Preserve 3D transformations */
-      cursor: pointer;
     }
 
     /* Styles for card images (front and back) */
@@ -68,7 +66,6 @@
       top: 0;
       left: 0;
       backface-visibility: hidden; /* Hide backface during animation to prevent flickering */
-      transition: transform 0.6s; /* Add smooth transition for the transform property */
     }
 
     /* Styles for buttons */
@@ -147,15 +144,10 @@
 
         // Apply the transformation if reversed
         if (isReversed) {
-          card.style.transform = 'rotateY(180deg)';
+          card.style.transform = 'rotate(180deg)';
         }
 
         cardContainer.appendChild(card);
-
-        // Add event listener for flipping the card
-        card.addEventListener('click', function () {
-          card.style.transform = card.style.transform === 'rotateY(180deg)' ? 'rotateY(0deg)' : 'rotateY(180deg)';
-        });
       }
     }
 
