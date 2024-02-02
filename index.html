@@ -42,6 +42,7 @@
       border-radius: 10px; /* Rounded corners */
       overflow: hidden;
       transition: transform 0.5s; /* Add flip animation */
+      transform-style: preserve-3d;
     }
 
     /* Styles for flipped card */
@@ -50,10 +51,14 @@
     }
 
     /* Styles for card images (front and back) */
-    .card img {
+    .card .front,
+    .card .back {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
       backface-visibility: hidden; /* Hide backface during animation to prevent flickering */
     }
 
@@ -98,27 +103,26 @@
 
         drawnCards.add(imageUrl); // Add the drawn card to the set
 
-        const isReversed = Math.random() < 0.5; // Randomly decide whether to reverse the card
         const card = document.createElement('div');
         card.classList.add('card');
-        if (isReversed) {
-          card.classList.add('flipped');
-        }
 
         const frontImage = document.createElement('img');
-        frontImage.src = imageUrl;
+        frontImage.src = 'https://i.pinimg.com/736x/c9/e5/61/c9e561d61fc50771ece1255125f7fb1a.jpg'; // Replace with your back image URL
         frontImage.alt = 'Front';
+        frontImage.classList.add('front');
 
         const backImage = document.createElement('img');
-        backImage.src = 'https://i.pinimg.com/736x/c9/e5/61/c9e561d61fc50771ece1255125f7fb1a.jpg'; // Replace with your back image URL
+        backImage.src = imageUrl;
         backImage.alt = 'Back';
-
-        // Set styling for card images
-        frontImage.classList.add('front');
         backImage.classList.add('back');
 
         card.appendChild(frontImage);
         card.appendChild(backImage);
+
+        // Randomly decide whether to reverse or flip the card
+        if (Math.random() < 0.5) {
+          card.classList.add('flipped');
+        }
 
         card.addEventListener('click', function () {
           this.classList.toggle('flipped');
