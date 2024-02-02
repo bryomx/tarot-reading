@@ -141,6 +141,9 @@
 
         const card = document.createElement('div');
         card.classList.add('card');
+        card.onclick = function () {
+          card.classList.toggle('flipped');
+        };
 
         const inner = document.createElement('div');
         inner.classList.add('inner');
@@ -157,11 +160,6 @@
 
         inner.appendChild(frontImage);
         inner.appendChild(backImage);
-
-        // Apply the transformation if reversed
-        if (isReversed) {
-          card.classList.add('flipped');
-        }
 
         card.appendChild(inner);
         cardContainer.appendChild(card);
