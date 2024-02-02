@@ -90,7 +90,6 @@
 
       for (let i = 0; i < numCards; i++) {
         const imageUrl = getRandomImageUrl();
-        const isReversed = Math.random() < 0.5; // 50% chance of being reversed
 
         const card = document.createElement('div');
         card.classList.add('card');
@@ -108,13 +107,13 @@
         card.appendChild(frontImage);
         card.appendChild(backImage);
 
-        // Apply the transformation if reversed
-        if (isReversed) {
-          card.style.transform = 'rotateY(180deg)';
+        // Apply the transformation if randomly upside down
+        if (Math.random() < 0.5) {
+          card.style.transform = 'rotate(180deg)';
         }
 
         card.addEventListener('click', function () {
-          this.style.transform = this.style.transform === 'rotateY(180deg)' ? 'rotateY(0deg)' : 'rotateY(180deg)';
+          this.style.transform = this.style.transform === 'rotate(180deg)' ? 'rotate(0deg)' : 'rotate(180deg)';
         });
 
         cardContainer.appendChild(card);
