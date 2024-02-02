@@ -28,9 +28,8 @@
     #cardContainer {
       display: flex;
       justify-content: center;
-      align-items: flex-end;
+      align-items: center;
       height: 80vh; /* Adjust the height of the container as needed */
-      perspective: 800px; /* Add perspective for 3D effect */
     }
 
     /* Styles for card images */
@@ -42,8 +41,8 @@
       border: 2px solid #fff; /* White border around the cards */
       border-radius: 10px; /* Rounded corners */
       overflow: hidden;
+      transition: transform 0.5s; /* Add flip animation */
       transform-style: preserve-3d;
-      animation: fadeIn 1s ease-in-out; /* Add fadeIn animation */
     }
 
     /* Styles for card images (front and back) */
@@ -71,28 +70,6 @@
       border-radius: 5px; /* Rounded corners for buttons */
       cursor: pointer;
     }
-
-    /* Keyframes for fadeIn animation */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-50px); /* Move cards up during fadeIn */
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Keyframes for flip animation */
-    @keyframes flip {
-      0%, 50% {
-        transform: rotateY(180deg);
-      }
-      100% {
-        transform: rotateY(0deg);
-      }
-    }
   </style>
 </head>
 <body>
@@ -116,7 +93,6 @@
 
         const card = document.createElement('div');
         card.classList.add('card');
-        card.style.animationDelay = i * 0.3 + 's'; // Add delay for staggered appearance
 
         const frontImage = document.createElement('img');
         frontImage.src = 'https://i.pinimg.com/736x/c9/e5/61/c9e561d61fc50771ece1255125f7fb1a.jpg'; // Replace with your back image URL
@@ -131,8 +107,13 @@
         card.appendChild(frontImage);
         card.appendChild(backImage);
 
+        // Apply the transformation if randomly upside down
+        if (Math.random() < 0.5) {
+          card.style.transform = 'rotate(180deg)';
+        }
+
         card.addEventListener('click', function () {
-          this.style.animation = 'flip 1s ease-in-out'; // Add flip animation
+          this.style.transform = this.style.transform === 'rotate(180deg)' ? 'rotate(0deg)' : 'rotate(180deg)';
         });
 
         cardContainer.appendChild(card);
