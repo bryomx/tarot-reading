@@ -54,6 +54,7 @@
       border: 2px solid #fff; /* White border around the cards */
       border-radius: 10px; /* Rounded corners */
       overflow: hidden;
+      transition: transform 0.5s ease; /* Add transition for a smooth flip effect */
     }
 
     /* Styles for card images (front and back) */
@@ -148,6 +149,12 @@
         }
 
         cardContainer.appendChild(card);
+
+        // Trigger reflow to apply the rotation transition
+        void card.offsetWidth;
+
+        // Remove the rotation after the transition completes
+        card.style.transform = 'rotate(0)';
       }
     }
 
