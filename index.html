@@ -69,6 +69,12 @@
     }
 
     /* Styles for buttons */
+    #buttonContainer {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
     button {
       display: inline-block; /* Make buttons appear inline */
       margin: 10px; /* Adjust margin between buttons */
@@ -91,10 +97,14 @@
     <img id="charotaGif" src="https://i.pinimg.com/originals/96/28/ab/9628ab80f52f9b302dbdba426aab8f41.gif" alt="Charota GIF">
   </div>
 
-  <button onclick="revealCards(3)">Draw 3 Cards</button>
-  <button onclick="revealCards(2)">Draw 2 Cards</button>
-  <button onclick="restartReading()">Restart Reading</button>
+  <!-- Button Container -->
+  <div id="buttonContainer">
+    <button onclick="revealCards(3)">Draw 3 Cards</button>
+    <button onclick="revealCards(2)">Draw 2 Cards</button>
+    <button onclick="restartReading()">Restart Reading</button>
+  </div>
 
+  <!-- Card Container -->
   <div id="cardContainer"></div>
 
   <script>
@@ -105,7 +115,15 @@
       cardContainer.innerHTML = ''; // Clear previous cards
 
       for (let i = 0; i < numCards; i++) {
-        const imageUrl = getRandomImageUrl();
+        let imageUrl = getRandomImageUrl();
+
+        // Ensure that the same card is not shown in one draw
+        while (drawnCards.has(imageUrl)) {
+          imageUrl = getRandomImageUrl();
+        }
+
+        drawnCards.add(imageUrl);
+
         const isReversed = Math.random() < 0.5; // 50% chance of being reversed
 
         const card = document.createElement('div');
