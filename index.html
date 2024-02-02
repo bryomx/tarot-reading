@@ -45,11 +45,6 @@
       transform-style: preserve-3d;
     }
 
-    /* Styles for flipped card */
-    .card.flipped {
-      transform: rotateY(180deg);
-    }
-
     /* Styles for card images (front and back) */
     .card .front,
     .card .back {
@@ -80,48 +75,14 @@
 <body>
   <h1>Cartas de Charota</h1>
 
-  <button onclick="revealCard()">Draw 1</button>
-  <button onclick="revealCards(2)">Draw 2</button>
-  <button onclick="revealCards(3)">Draw 3</button>
+  <button onclick="revealCards(3)">Draw 3 Cards</button>
+  <button onclick="revealCards(2)">Draw 2 Cards</button>
   <button onclick="restartReading()">Restart Reading</button>
 
   <div id="cardContainer"></div>
 
   <script>
     const drawnCards = new Set(); // Set to keep track of drawn cards
-
-    function revealCard() {
-      const cardContainer = document.getElementById('cardContainer');
-      const imageUrl = getRandomImageUrl();
-
-      // Ensure not drawing the same card again
-      if (!drawnCards.has(imageUrl)) {
-        drawnCards.add(imageUrl); // Add the drawn card to the set
-
-        const card = document.createElement('div');
-        card.classList.add('card');
-
-        const frontImage = document.createElement('img');
-        frontImage.src = 'https://i.pinimg.com/736x/c9/e5/61/c9e561d61fc50771ece1255125f7fb1a.jpg'; // Replace with your back image URL
-        frontImage.alt = 'Front';
-        frontImage.classList.add('front');
-
-        const backImage = document.createElement('img');
-        backImage.src = imageUrl;
-        backImage.alt = 'Back';
-        backImage.classList.add('back');
-
-        card.appendChild(frontImage);
-        card.appendChild(backImage);
-
-        card.addEventListener('click', function () {
-          this.classList.toggle('flipped');
-        });
-
-        cardContainer.innerHTML = ''; // Clear previous cards
-        cardContainer.appendChild(card);
-      }
-    }
 
     function revealCards(numCards) {
       const cardContainer = document.getElementById('cardContainer');
@@ -153,8 +114,13 @@
         card.appendChild(frontImage);
         card.appendChild(backImage);
 
+        // Randomly decide whether to reverse or flip the card
+        if (Math.random() < 0.5) {
+          card.style.transform = 'rotateY(180deg)';
+        }
+
         card.addEventListener('click', function () {
-          this.classList.toggle('flipped');
+          this.style.transform = this.style.transform === 'rotateY(180deg)' ? 'rotateY(0deg)' : 'rotateY(180deg)';
         });
 
         cardContainer.appendChild(card);
