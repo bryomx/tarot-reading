@@ -31,8 +31,8 @@
     }
 
     #charotaGif {
-      max-width: 100px; /* Set your desired fixed size */
-      max-height: 100px;
+      max-width: 200px; /* Set your desired fixed size */
+      max-height: 200px;
     }
 
     /* Styles for card container */
@@ -54,9 +54,6 @@
       border: 2px solid #fff; /* White border around the cards */
       border-radius: 10px; /* Rounded corners */
       overflow: hidden;
-      cursor: pointer;
-      transform-style: preserve-3d; /* Preserve 3D transformations */
-      transition: transform 0.5s; /* Add a smooth transition effect */
     }
 
     /* Styles for card images (front and back) */
@@ -71,10 +68,6 @@
       backface-visibility: hidden; /* Hide backface during animation to prevent flickering */
     }
 
-    .card .back {
-      transform: rotateY(180deg); /* Initially hide the back face */
-    }
-
     /* Styles for buttons */
     #buttonContainer {
       display: flex;
@@ -87,7 +80,7 @@
       margin: 10px; /* Adjust margin between buttons */
       padding: 10px;
       font-family: 'Pacifico', cursive; /* Stylish handwriting font */
-      font-size: 14px;
+      font-size: 16px;
       background-color: #fff; /* White background for buttons */
       color: #333; /* Dark text color for buttons */
       border: none;
@@ -135,7 +128,6 @@
 
         const card = document.createElement('div');
         card.classList.add('card');
-        card.addEventListener('click', () => flipCard(card));
 
         const frontImage = document.createElement('img');
         frontImage.src = 'https://i.pinimg.com/736x/c9/e5/61/c9e561d61fc50771ece1255125f7fb1a.jpg'; // Replace with your back image URL
@@ -152,15 +144,11 @@
 
         // Apply the transformation if reversed
         if (isReversed) {
-          card.style.transform = 'rotateY(180deg)';
+          card.style.transform = 'rotate(180deg)';
         }
 
         cardContainer.appendChild(card);
       }
-    }
-
-    function flipCard(card) {
-      card.style.transform = 'rotateY(180deg)';
     }
 
     function getRandomImageUrl() {
