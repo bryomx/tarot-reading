@@ -28,6 +28,7 @@
       color: #fff;
       font-family: 'Deutsch Gothic', cursive;
       position: relative; /* To position the image relative to the title */
+      z-index: 1; /* Ensure the title appears above the glitter lines image */
     }
 
     /* Styles for the glitter lines image */
@@ -40,6 +41,8 @@
     #glitterImage img {
       max-width: 100%;
       height: auto;
+      position: relative; /* To allow positioning the GIF above it */
+      z-index: 0; /* Ensure the GIF appears below the glitter lines image */
     }
 
     /* Styles for GIF Container */
@@ -48,6 +51,8 @@
       justify-content: center;
       align-items: center; /* Center vertically */
       height: 30vh; /* Adjust the height of the container */
+      position: relative; /* To allow positioning above the glitter lines */
+      z-index: 2; /* Ensure the GIF appears above the glitter lines image */
     }
 
     #charotaGif {
@@ -111,12 +116,11 @@
   </style>
 </head>
 <body>
-  <h1>Cartas de Charota</h1>
-
-  <!-- Glitter Lines Image -->
   <div id="glitterImage">
     <img src="https://www.picgifs.com/divider/lines/glitter/lines-glitter-369402.gif" alt="Glitter Lines">
   </div>
+
+  <h1>Cartas de Charota</h1>
 
   <!-- GIF Container -->
   <div id="gifContainer">
