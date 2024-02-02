@@ -34,12 +34,26 @@
 
     /* Styles for card images */
     .card {
+      position: relative;
       max-width: 150px; /* Maximum width for each card */
       max-height: 225px; /* Maximum height for each card */
       margin: 5px; /* Adjust the margin as needed */
       border: 2px solid #fff; /* White border around the cards */
       border-radius: 10px; /* Rounded corners */
       overflow: hidden;
+      transition: transform 0.5s; /* Add flip animation */
+    }
+
+    /* Styles for flipped card */
+    .card.flipped {
+      transform: rotateY(180deg);
+    }
+
+    /* Styles for card images (front and back) */
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     /* Styles for buttons */
@@ -84,17 +98,33 @@
         drawnCards.add(imageUrl); // Add the drawn card to the set
 
         const isReversed = Math.random() < 0.5; // 50% chance of being reversed
-        const cardImage = document.createElement('img');
-        cardImage.src = imageUrl;
+        const card = document.createElement('div');
+        card.classList.add('card');
+
+        const frontImage = document.createElement('img');
+        frontImage.src = imageUrl;
+        frontImage.alt = 'Front';
+
+        const backImage = document.createElement('img');
+        backImage.src = 'https://i.pinimg.com/736x/c9/e5/61/c9e561d61fc50771ece1255125f7fb1a.jpg'; // Replace with your back image URL
+        backImage.alt = 'Back';
 
         // Set styling for card images
-        cardImage.classList.add('card');
+        frontImage.classList.add('front');
+        backImage.classList.add('back');
 
         if (isReversed) {
-          cardImage.style.transform = 'rotate(180deg)';
+          card.classList.add('flipped');
         }
 
-        cardContainer.appendChild(cardImage);
+        card.appendChild(frontImage);
+        card.appendChild(backImage);
+
+        card.addEventListener('click', function () {
+          this.classList.toggle('flipped');
+        });
+
+        cardContainer.appendChild(card);
       }
     }
 
