@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cartas de Charota</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Deutsch+Gothic&display=swap">
   <style>
     /* Styles for galaxy backdrop */
     body {
@@ -17,12 +16,17 @@
     }
 
     /* Styles for title */
+    @font-face {
+      font-family: 'Deutsch Gothic';
+      src: local('Deutsch Gothic'), url('Deutsch.tff') format('truetype'); /* Update the URL to match your file name */
+    }
+
     h1 {
       text-align: center;
       margin-top: 20px;
       font-size: 36px;
       color: #fff;
-      font-family: 'Deutsch Gothic', cursive; /* Change font-family to Deutsch Gothic */
+      font-family: 'Deutsch Gothic', cursive;
     }
 
     /* Styles for GIF */
