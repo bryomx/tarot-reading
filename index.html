@@ -35,8 +35,8 @@
     /* Styles for card images */
     .card {
       position: relative;
-      max-width: 150px; /* Maximum width for each card */
-      max-height: 225px; /* Maximum height for each card */
+      width: 150px; /* Width for each card */
+      height: 225px; /* Height for each card */
       margin: 5px; /* Adjust the margin as needed */
       border: 2px solid #fff; /* White border around the cards */
       border-radius: 10px; /* Rounded corners */
@@ -77,6 +77,8 @@
 
   <button onclick="revealCards(3)">Reveal 3 Cards</button>
   <button onclick="revealCards(2)">Reveal 2 Cards</button>
+  <button onclick="revealCardsWithReversed(3)">Reveal 3 Cards (with reversed)</button>
+  <button onclick="revealCardsWithReversed(2)">Reveal 2 Cards (with reversed)</button>
   <button onclick="restartReading()">Restart Reading</button>
 
   <div id="cardContainer"></div>
@@ -85,6 +87,14 @@
     const drawnCards = new Set(); // Set to keep track of drawn cards
 
     function revealCards(numCards) {
+      revealCardsInternal(numCards, false);
+    }
+
+    function revealCardsWithReversed(numCards) {
+      revealCardsInternal(numCards, true);
+    }
+
+    function revealCardsInternal(numCards, withReversed) {
       const cardContainer = document.getElementById('cardContainer');
       cardContainer.innerHTML = ''; // Clear previous cards
 
@@ -98,9 +108,12 @@
 
         drawnCards.add(imageUrl); // Add the drawn card to the set
 
-        const isReversed = Math.random() < 0.5; // 50% chance of being reversed
+        const isReversed = withReversed && Math.random() < 0.5; // Randomly decide whether to reverse the card
         const card = document.createElement('div');
         card.classList.add('card');
+        if (isReversed) {
+          card.classList.add('flipped');
+        }
 
         const frontImage = document.createElement('img');
         frontImage.src = imageUrl;
@@ -120,10 +133,6 @@
         card.addEventListener('click', function () {
           this.classList.toggle('flipped');
         });
-
-        if (isReversed) {
-          setTimeout(() => card.classList.add('flipped'), 0); // Delay the flip for reversed cards
-        }
 
         cardContainer.appendChild(card);
       }
