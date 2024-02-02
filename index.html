@@ -80,14 +80,48 @@
 <body>
   <h1>Cartas de Charota</h1>
 
-  <button onclick="revealCards(3)">Draw 3</button>
+  <button onclick="revealCard()">Draw 1</button>
   <button onclick="revealCards(2)">Draw 2</button>
+  <button onclick="revealCards(3)">Draw 3</button>
   <button onclick="restartReading()">Restart Reading</button>
 
   <div id="cardContainer"></div>
 
   <script>
     const drawnCards = new Set(); // Set to keep track of drawn cards
+
+    function revealCard() {
+      const cardContainer = document.getElementById('cardContainer');
+      const imageUrl = getRandomImageUrl();
+
+      // Ensure not drawing the same card again
+      if (!drawnCards.has(imageUrl)) {
+        drawnCards.add(imageUrl); // Add the drawn card to the set
+
+        const card = document.createElement('div');
+        card.classList.add('card');
+
+        const frontImage = document.createElement('img');
+        frontImage.src = 'https://i.pinimg.com/736x/c9/e5/61/c9e561d61fc50771ece1255125f7fb1a.jpg'; // Replace with your back image URL
+        frontImage.alt = 'Front';
+        frontImage.classList.add('front');
+
+        const backImage = document.createElement('img');
+        backImage.src = imageUrl;
+        backImage.alt = 'Back';
+        backImage.classList.add('back');
+
+        card.appendChild(frontImage);
+        card.appendChild(backImage);
+
+        card.addEventListener('click', function () {
+          this.classList.toggle('flipped');
+        });
+
+        cardContainer.innerHTML = ''; // Clear previous cards
+        cardContainer.appendChild(card);
+      }
+    }
 
     function revealCards(numCards) {
       const cardContainer = document.getElementById('cardContainer');
