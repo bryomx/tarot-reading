@@ -18,7 +18,7 @@
     /* Styles for title */
     @font-face {
       font-family: 'Deutsch Gothic';
-      src: local('Deutsch Gothic'), url('Deutsch.ttf') format('truetype'); /* Update the URL to match your file name */
+      src: local('Deutsch Gothic'), url('Deutsch.ttf') format('truetype');
     }
 
     h1 {
@@ -27,6 +27,16 @@
       font-size: 36px;
       color: #fff;
       font-family: 'Deutsch Gothic', cursive;
+      position: relative; /* To position the image relative to the title */
+    }
+
+    /* Styles for the glitter lines image */
+    #glitterImage {
+      position: absolute;
+      top: 20px; /* Overlap 20% of the title */
+      width: 100%;
+      height: auto;
+      z-index: -1; /* Move the image below the title */
     }
 
     /* Styles for GIF */
@@ -36,34 +46,33 @@
     }
 
     #charotaGif {
-      max-width: 100px; /* Set your desired fixed size */
+      max-width: 100px;
       max-height: 100px;
     }
 
     /* Styles for card container */
     #cardContainer {
       display: flex;
-      justify-content: space-around; /* Adjusted for spacing between cards */
+      justify-content: space-around;
       align-items: center;
-      flex-wrap: wrap; /* Allow cards to wrap to the next line */
-      height: 40vh; /* Adjust the height of the container as needed */
-      margin-top: 20px; /* Add margin to space out from the buttons */
-      width: 80%; /* Adjust the width of the container */
-      margin: 0 auto; /* Center the container horizontally */
+      flex-wrap: wrap;
+      height: 40vh;
+      margin-top: 20px;
+      width: 80%;
+      margin: 0 auto;
     }
 
     /* Styles for card images */
     .card {
       position: relative;
-      width: 150px; /* Width for each card */
-      height: 225px; /* Height for each card */
-      margin: 5px; /* Adjust the margin as needed */
-      border: 2px solid #fff; /* White border around the cards */
-      border-radius: 10px; /* Rounded corners */
+      width: 150px;
+      height: 225px;
+      margin: 5px;
+      border: 2px solid #fff;
+      border-radius: 10px;
       overflow: hidden;
     }
 
-    /* Styles for card images (front and back) */
     .card .front,
     .card .back {
       width: 100%;
@@ -72,7 +81,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      backface-visibility: hidden; /* Hide backface during animation to prevent flickering */
+      backface-visibility: hidden;
     }
 
     /* Styles for buttons */
@@ -83,21 +92,26 @@
     }
 
     button {
-      display: inline-block; /* Make buttons appear inline */
-      margin: 7px; /* Adjust margin between buttons */
+      display: inline-block;
+      margin: 7px;
       padding: 7px;
-      font-family: 'Deutsch Gothic', cursive; /* Stylish handwriting font */
+      font-family: 'Deutsch Gothic', cursive;
       font-size: 14px;
-      background-color: #fff; /* White background for buttons */
-      color: #333; /* Dark text color for buttons */
+      background-color: #fff;
+      color: #333;
       border: none;
-      border-radius: 5px; /* Rounded corners for buttons */
+      border-radius: 5px;
       cursor: pointer;
     }
   </style>
 </head>
 <body>
   <h1>Cartas de Charota</h1>
+
+  <!-- Glitter Lines Image -->
+  <div id="glitterImage">
+    <img src="https://www.picgifs.com/divider/lines/glitter/lines-glitter-369402.gif" alt="Glitter Lines">
+  </div>
 
   <!-- GIF Container -->
   <div id="gifContainer">
@@ -115,29 +129,28 @@
   <div id="cardContainer"></div>
 
   <script>
-    const drawnCards = new Set(); // Set to keep track of drawn cards
+    const drawnCards = new Set();
 
     function revealCards(numCards) {
       const cardContainer = document.getElementById('cardContainer');
-      cardContainer.innerHTML = ''; // Clear previous cards
+      cardContainer.innerHTML = '';
 
       for (let i = 0; i < numCards; i++) {
         let imageUrl = getRandomImageUrl();
 
-        // Ensure that the same card is not shown in one draw
         while (drawnCards.has(imageUrl)) {
           imageUrl = getRandomImageUrl();
         }
 
         drawnCards.add(imageUrl);
 
-        const isReversed = Math.random() < 0.5; // 50% chance of being reversed
+        const isReversed = Math.random() < 0.5;
 
         const card = document.createElement('div');
         card.classList.add('card');
 
         const frontImage = document.createElement('img');
-        frontImage.src = 'https://i.pinimg.com/736x/c9/e5/61/c9e561d61fc50771ece1255125f7fb1a.jpg'; // Replace with your back image URL
+        frontImage.src = 'https://i.pinimg.com/736x/c9/e5/61/c9e561d61fc50771ece1255125f7fb1a.jpg';
         frontImage.alt = 'Front';
         frontImage.classList.add('front');
 
@@ -149,7 +162,6 @@
         card.appendChild(frontImage);
         card.appendChild(backImage);
 
-        // Apply the transformation if reversed
         if (isReversed) {
           card.style.transform = 'rotate(180deg)';
         }
@@ -160,14 +172,14 @@
 
     function getRandomImageUrl() {
       const folderUrl = 'https://raw.githubusercontent.com/bryomx/tarot-reading/main/';
-      const randomIndex = Math.floor(Math.random() * 122) + 1; // Assuming you have 122 images named card0.jpg, card1.jpg, ..., card121.jpg
+      const randomIndex = Math.floor(Math.random() * 122) + 1;
       return `${folderUrl}${randomIndex}.jpg`;
     }
 
     function restartReading() {
-      drawnCards.clear(); // Clear the set of drawn cards
+      drawnCards.clear();
       const cardContainer = document.getElementById('cardContainer');
-      cardContainer.innerHTML = ''; // Clear all cards
+      cardContainer.innerHTML = '';
     }
   </script>
 </body>
