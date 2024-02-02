@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,19 +27,16 @@
       font-size: 36px;
       color: #fff;
       font-family: 'Deutsch Gothic', cursive;
-      position: relative; /* To position the glitter lines image relative to the title */
-      z-index: 1; /* Ensure the title is above the glitter lines */
+      position: relative; /* To position the image relative to the title */
     }
 
     /* Styles for the glitter lines image */
     #glitterImage {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      top: 20px; /* Overlap 20% of the title */
       width: 100%;
       height: auto;
-      z-index: 0; /* Move the image behind the title */
+      z-index: -1; /* Move the image below the title */
     }
 
     /* Styles for GIF */
@@ -109,7 +105,6 @@
     }
   </style>
 </head>
-
 <body>
   <h1>Cartas de Charota</h1>
 
@@ -188,5 +183,4 @@
     }
   </script>
 </body>
-
 </html>
