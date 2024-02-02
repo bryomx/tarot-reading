@@ -13,6 +13,18 @@
       background-size: cover;
       background-position: center;
       font-family: 'Pacifico', cursive;
+      position: relative; /* Add this to make the glitter lines position relative to the body */
+    }
+
+    /* Styles for the glitter lines image */
+    #glitterImage {
+      position: absolute;
+      top: 60px; /* Adjust the top value to position the glitter lines below the title */
+      left: 50%; /* Center the glitter lines horizontally */
+      transform: translateX(-50%); /* Adjust to center the glitter lines horizontally */
+      width: 100%;
+      height: auto;
+      z-index: -1;
     }
 
     /* Styles for title */
@@ -33,10 +45,38 @@
     /* Styles for the glitter lines image */
     #glitterImage {
       position: absolute;
-      top: 20px; /* Overlap 20% of the title */
+      top: 60px; /* Adjust the top value to position the glitter lines below the title */
+      left: 50%; /* Center the glitter lines horizontally */
+      transform: translateX(-50%); /* Adjust to center the glitter lines horizontally */
       width: 100%;
       height: auto;
-      z-index: -1; /* Move the image below the title */
+      z-index: -1;
+    }
+
+    /* Styles for the title */
+    @font-face {
+      font-family: 'Deutsch Gothic';
+      src: local('Deutsch Gothic'), url('Deutsch.ttf') format('truetype');
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 36px;
+      color: #fff;
+      font-family: 'Deutsch Gothic', cursive;
+      position: relative; /* To position the image relative to the title */
+    }
+
+    /* Styles for the glitter lines image */
+    #glitterImage {
+      position: absolute;
+      top: 60px; /* Adjust the top value to position the glitter lines below the title */
+      left: 50%; /* Center the glitter lines horizontally */
+      transform: translateX(-50%); /* Adjust to center the glitter lines horizontally */
+      width: 100%;
+      height: auto;
+      z-index: -1;
     }
 
     /* Styles for GIF */
