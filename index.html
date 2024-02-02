@@ -74,9 +74,6 @@
       border: 2px solid #fff;
       border-radius: 10px;
       overflow: hidden;
-      cursor: pointer;
-      transform: scale(1); /* Initial scale for smooth reveal effect */
-      transition: transform 0.5s ease; /* Smooth transition effect */
     }
 
     .card .front,
@@ -154,7 +151,6 @@
 
         const card = document.createElement('div');
         card.classList.add('card');
-        card.addEventListener('click', () => revealCardImage(card));
 
         const frontImage = document.createElement('img');
         frontImage.src = 'https://i.pinimg.com/736x/c9/e5/61/c9e561d61fc50771ece1255125f7fb1a.jpg';
@@ -174,15 +170,7 @@
         }
 
         cardContainer.appendChild(card);
-
-        // Triggering a reflow to apply initial transform
-        void card.offsetWidth;
-        card.style.transform = 'scale(1)';
       }
-    }
-
-    function revealCardImage(card) {
-      card.style.transform = 'scale(0)';
     }
 
     function getRandomImageUrl() {
