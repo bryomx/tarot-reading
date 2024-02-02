@@ -141,12 +141,9 @@
 
         const card = document.createElement('div');
         card.classList.add('card');
-        card.onclick = function () {
-          card.classList.toggle('flipped');
-        };
 
-        const inner = document.createElement('div');
-        inner.classList.add('inner');
+        const innerContainer = document.createElement('div');
+        innerContainer.classList.add('inner');
 
         const frontImage = document.createElement('img');
         frontImage.src = 'https://i.pinimg.com/736x/c9/e5/61/c9e561d61fc50771ece1255125f7fb1a.jpg'; // Replace with your back image URL
@@ -158,10 +155,19 @@
         backImage.alt = 'Back';
         backImage.classList.add('back');
 
-        inner.appendChild(frontImage);
-        inner.appendChild(backImage);
+        innerContainer.appendChild(frontImage);
+        innerContainer.appendChild(backImage);
+        card.appendChild(innerContainer);
 
-        card.appendChild(inner);
+        // Apply the transformation if reversed
+        if (isReversed) {
+          card.style.transform = 'rotateY(180deg)';
+        }
+
+        card.addEventListener('click', function () {
+          card.classList.toggle('flipped');
+        });
+
         cardContainer.appendChild(card);
       }
     }
