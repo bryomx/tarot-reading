@@ -35,17 +35,16 @@
     #glitterImage {
       text-align: center; /* Center horizontally */
       position: relative;
-      margin-top: 20px; /* Overlap 20% of the title */
+      top: -20px; /* Overlap 20% of the title */
+      z-index: 0; /* Move the image below the title */
     }
 
     #glitterImage img {
       max-width: 100%;
       height: auto;
-      position: relative; /* To allow positioning the GIF above it */
-      z-index: 0; /* Ensure the GIF appears below the glitter lines image */
     }
 
-    /* Styles for GIF Container */
+    /* Styles for GIF */
     #gifContainer {
       display: flex;
       justify-content: center;
@@ -116,6 +115,7 @@
   </style>
 </head>
 <body>
+  <!-- Glitter Lines Image -->
   <div id="glitterImage">
     <img src="https://www.picgifs.com/divider/lines/glitter/lines-glitter-369402.gif" alt="Glitter Lines">
   </div>
