@@ -75,10 +75,8 @@
 <body>
   <h1>Cartas de Charota</h1>
 
-  <button onclick="revealCards(3)">Reveal 3 Cards</button>
-  <button onclick="revealCards(2)">Reveal 2 Cards</button>
-  <button onclick="revealCardsWithReversed(3)">Reveal 3 Cards (with reversed)</button>
-  <button onclick="revealCardsWithReversed(2)">Reveal 2 Cards (with reversed)</button>
+  <button onclick="revealCards(3)">Draw 3</button>
+  <button onclick="revealCards(2)">Draw 2</button>
   <button onclick="restartReading()">Restart Reading</button>
 
   <div id="cardContainer"></div>
@@ -87,14 +85,6 @@
     const drawnCards = new Set(); // Set to keep track of drawn cards
 
     function revealCards(numCards) {
-      revealCardsInternal(numCards, false);
-    }
-
-    function revealCardsWithReversed(numCards) {
-      revealCardsInternal(numCards, true);
-    }
-
-    function revealCardsInternal(numCards, withReversed) {
       const cardContainer = document.getElementById('cardContainer');
       cardContainer.innerHTML = ''; // Clear previous cards
 
@@ -108,7 +98,7 @@
 
         drawnCards.add(imageUrl); // Add the drawn card to the set
 
-        const isReversed = withReversed && Math.random() < 0.5; // Randomly decide whether to reverse the card
+        const isReversed = Math.random() < 0.5; // Randomly decide whether to reverse the card
         const card = document.createElement('div');
         card.classList.add('card');
         if (isReversed) {
