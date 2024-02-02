@@ -32,12 +32,14 @@
 
     /* Styles for the glitter lines image */
     #glitterImage {
-      position: absolute;
-      top: 20px; /* Overlap 20% of the title */
-      width: 100%;
-      height: auto;
-      z-index: -1; /* Move the image below the title */
-    }
+  position: absolute;
+  top: -20px; /* Overlap the image with the title by adjusting this value */
+  left: 50%; /* Center the image horizontally */
+  transform: translateX(-50%); /* Center the image precisely */
+  width: 100%;
+  height: auto;
+  z-index: -1; /* Move the image below the title */
+}
 
     /* Styles for GIF */
     #gifContainer {
