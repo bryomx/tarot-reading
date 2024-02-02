@@ -113,16 +113,16 @@
         frontImage.classList.add('front');
         backImage.classList.add('back');
 
-        if (isReversed) {
-          card.classList.add('flipped');
-        }
-
         card.appendChild(frontImage);
         card.appendChild(backImage);
 
         card.addEventListener('click', function () {
           this.classList.toggle('flipped');
         });
+
+        if (isReversed) {
+          card.classList.add('flipped');
+        }
 
         cardContainer.appendChild(card);
       }
