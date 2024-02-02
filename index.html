@@ -53,18 +53,10 @@
       margin: 5px; /* Adjust the margin as needed */
       border: 2px solid #fff; /* White border around the cards */
       border-radius: 10px; /* Rounded corners */
-      perspective: 1000px; /* Perspective for 3D effect */
-      cursor: pointer;
+      overflow: hidden;
     }
 
     /* Styles for card images (front and back) */
-    .card .inner {
-      width: 100%;
-      height: 100%;
-      transform-style: preserve-3d;
-      transition: transform 0.5s;
-    }
-
     .card .front,
     .card .back {
       width: 100%;
@@ -74,11 +66,6 @@
       top: 0;
       left: 0;
       backface-visibility: hidden; /* Hide backface during animation to prevent flickering */
-      border-radius: 10px; /* Rounded corners for front and back */
-    }
-
-    .card .back {
-      transform: rotateY(180deg);
     }
 
     /* Styles for buttons */
@@ -142,9 +129,6 @@
         const card = document.createElement('div');
         card.classList.add('card');
 
-        const innerContainer = document.createElement('div');
-        innerContainer.classList.add('inner');
-
         const frontImage = document.createElement('img');
         frontImage.src = 'https://i.pinimg.com/736x/c9/e5/61/c9e561d61fc50771ece1255125f7fb1a.jpg'; // Replace with your back image URL
         frontImage.alt = 'Front';
@@ -155,18 +139,13 @@
         backImage.alt = 'Back';
         backImage.classList.add('back');
 
-        innerContainer.appendChild(frontImage);
-        innerContainer.appendChild(backImage);
-        card.appendChild(innerContainer);
+        card.appendChild(frontImage);
+        card.appendChild(backImage);
 
         // Apply the transformation if reversed
         if (isReversed) {
-          card.style.transform = 'rotateY(180deg)';
+          card.style.transform = 'rotate(180deg)';
         }
-
-        card.addEventListener('click', function () {
-          card.classList.toggle('flipped');
-        });
 
         cardContainer.appendChild(card);
       }
